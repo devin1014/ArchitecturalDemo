@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ArchitecturalDemo</string>
+    <string name="account_vip">VIP</string>
+    <string name="account_no_vip">NO VIP</string>
+</resources>
