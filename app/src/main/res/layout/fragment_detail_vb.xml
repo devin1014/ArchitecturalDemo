@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="android.liuwei.architecturaldemo.mvvm.viewmodel.imp.DetailViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/detail_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapterFactory="@{viewModel.adapterFactory}"
+            app:items="@{viewModel.items}"
+            app:manager="@{viewModel.layoutManager}" />
+
+        <ProgressBar
+            android:id="@+id/detail_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/detail_error_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.errorMsg}"
+            android:textColor="#000000"
+            android:textSize="14dp"
+            android:visibility="@{viewModel.error ? View.VISIBLE : View.GONE}"
+            tools:ignore="SpUsage" />
+
+    </FrameLayout>
+</layout>

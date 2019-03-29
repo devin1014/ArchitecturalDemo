@@ -4,7 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.liuwei.architecturaldemo.R;
 import android.liuwei.architecturaldemo.databinding.FragmentAccountVbBinding;
 import android.liuwei.architecturaldemo.mvp.contract.imp.AccountModel;
-import android.liuwei.architecturaldemo.mvvm.viewmodel.AccountViewModel;
+import android.liuwei.architecturaldemo.mvvm.viewmodel.imp.AccountViewModel;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,9 +29,16 @@ public class MvvmAccountFragment extends Fragment
     {
         FragmentAccountVbBinding viewBinding = DataBindingUtil.bind(view);
 
-        assert viewBinding != null;
-        viewBinding.setViewModel(mViewModel = new AccountViewModel(new AccountModel()));
+        mViewModel = new AccountViewModel(getActivity(), new AccountModel());
 
-        viewBinding.executePendingBindings();
+        mViewModel.setViewBinding(viewBinding);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        mViewModel.start();
     }
 }

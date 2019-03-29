@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 
 public abstract class BasePresenter<V extends IBaseView, M extends IBaseModel> implements IBasePresenter
 {
-    protected Reference<Context> mReference;
+    private Reference<Context> mReference;
     protected V mView;
     protected M mModel;
 
@@ -32,8 +32,6 @@ public abstract class BasePresenter<V extends IBaseView, M extends IBaseModel> i
         if (mReference != null)
         {
             mReference.clear();
-
-            mReference = null;
         }
 
         if (mModel != null)
